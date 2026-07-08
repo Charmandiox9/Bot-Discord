@@ -12,7 +12,7 @@ import {
   entersState,
 } from "@discordjs/voice";
 import { getState } from "../state";
-import { extractInfo, TrackInfo } from "./youtube";
+import { extractInfo, TrackInfo, getYoutubePlaylistQueries } from "./youtube";
 import { currentTrackInfo, updateMenu } from "../ui";
 import {
   CommandInteraction,
@@ -89,11 +89,12 @@ export function createResourceFromUrl(
     options["downloader-args"] = `ffmpeg:${ffmpegArgs.join(" ")}`;
   }
 
-  const stream = ytdlp.exec(url, options as any, {
+  const exec = (ytdlp as any).exec;
+  const stream = exec(url, options as any, {
     stdio: ["ignore", "pipe", "ignore"],
   });
 
-  stream.on("error", (err) => console.error("Error de ffmpeg:", err));
+  stream.on("error", (err: any) => console.error("Error de ffmpeg:", err));
 
   return createAudioResource(stream.stdout!, {
     inputType: StreamType.Arbitrary,

@@ -58,9 +58,9 @@ export async function extractInfo(query: string): Promise<TrackInfo> {
       title: info.title || 'Desconocido',
       url: info.url as string,
       webpage_url: (result.webpage_url as string) || query,
-      artist: info.uploader || info.artist || info.channel || 'Desconocido',
+      artist: (info as any).uploader || (info as any).artist || (info as any).channel || 'Desconocido',
       duration: info.duration,
-      thumbnail: info.thumbnail,
+      thumbnail: (info as any).thumbnail,
     };
   } catch (error: any) {
     console.error('Error extrayendo info de YT:', error.message);

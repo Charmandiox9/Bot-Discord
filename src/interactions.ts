@@ -337,7 +337,7 @@ export async function handleModal(interaction: ModalSubmitInteraction) {
         try {
           const info = await extractInfo(query);
           state.queue.push({
-            query: info.webpage_url,
+            query: info.webpage_url || query,
             title: info.title,
             artist: info.artist,
             duration: info.duration,

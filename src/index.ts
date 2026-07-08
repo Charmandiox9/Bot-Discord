@@ -61,10 +61,10 @@ client.on("interactionCreate", async (interaction) => {
     console.error("Error en interacción:", err.message);
     const errorMsg = `Error: ${err.message || "Ocurrió un error inesperado al procesar tu solicitud."}`;
 
-    if (interaction.replied || interaction.deferred) {
-      await interaction.editReply({ content: errorMsg, components: [] });
+    if ((interaction as any).replied || (interaction as any).deferred) {
+      await (interaction as any).editReply({ content: errorMsg, components: [] });
     } else {
-      await interaction.reply({ content: errorMsg, flags: 64 });
+      await (interaction as any).reply({ content: errorMsg, flags: 64 });
     }
   }
 });
