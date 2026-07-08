@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  discord-bot:
+    build: .
+    container_name: discord-bot
+    restart: unless-stopped
+    volumes:
+      # Persistir el archivo de playlists
+      - ./playlists.json:/app/playlists.json
+    env_file:
+      - .env
