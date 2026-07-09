@@ -8,5 +8,7 @@ services:
     volumes:
       # Persistir el archivo de playlists
       - ./playlists.json:/app/playlists.json
+      # Mapear cookies para yt-dlp
+      - ./youtube-cookies.txt:/app/youtube-cookies.txt
     env_file:
       - .env

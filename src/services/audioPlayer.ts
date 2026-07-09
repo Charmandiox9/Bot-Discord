@@ -66,6 +66,7 @@ export function createResourceFromUrl(
     q: true,
     f: "bestaudio/best",
     r: "100K",
+    cookies: "/app/youtube-cookies.txt",
   };
 
   let ffmpegArgs: string[] = [];
